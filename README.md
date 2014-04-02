@@ -7,9 +7,9 @@ Heavily inspired by [Pow](http://pow.cx).
 ## How to use?
 
 * Create `/etc/resolver/aws` file with the following contents:
-  ```
-  nameserver 127.0.0.1
-  port 20561
-  ```
+```
+nameserver 127.0.0.1
+port 20561
+```
 * Run server
   
