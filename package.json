@@ -1,0 +1,37 @@
+{
+    "author": "Kamil Figiela",
+    "bin": {
+        "aws-dns": "./aws-dns.coffee"
+    },
+    "dependencies": {
+        "async": "0.1.22",
+        "connect": "~> 1.8.0",
+        "dnsserver": "https://github.com/sstephenson/dnsserver.js/tarball/4f2c713b2e",
+        "log": ">= 1.1.1",
+        "nack": "~> 0.15",
+        "request": "~> 2.16",
+        "aws-sdk": "*"
+    },
+    "description": "Virtual DNS server for Amazon EC2",
+    "devDependencies": {
+        "coffee-script": "1.6.2",
+        "eco": "~> 1.1.0",
+        "nodeunit": "0.8.0"
+    },
+    "engines": {
+        "node": ">= 0.8.0"
+    },
+    "main": "./lib/index.js",
+    "name": "aws-dns",
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/kfigiela/aws-dns.git"
+    },
+    "scripts": {
+        "pretest": "cake pretest",
+        "start": "cake start",
+        "stop": "cake stop",
+        "test": "cake test"
+    },
+    "version": "0.1.0"
+}
