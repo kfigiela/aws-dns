@@ -2,7 +2,6 @@
 
 dnsserver = require('dnsserver')
 AWS = require('aws-sdk')
-ec2 = new AWS.EC2();
 
 server = dnsserver.createServer()
 server.bind(20561, '127.0.0.1')
@@ -12,15 +11,19 @@ server.on 'request', (req, res) ->
   question = req.question
   
   if question.type == 1 && question.class == 1
-    matches = question.name.match(/([a-zA-Z0-9-]+)\.aws/)
+    matches = question.name.match(/([a-zA-Z0-9-]+)\.(?:([a-zA-Z0-9-]+)\.)?aws/)
+    console.log(matches)
     hostname = matches[1]
-    console.log hostname
+    region = matches[2]
     filter = if hostname.match /^i-/
       {"Name": 'instance-id', 'Values': [hostname]}
     else
       {"Name": 'tag:Name', 'Values': [hostname]}
       
-    console.log "DNS request for #{hostname}"
+    console.log "DNS request for #{hostname} @ #{region}"
+    
+    ec2 = new AWS.EC2();
+    ec2.setEndpoint "https://ec2.#{region}.amazonaws.com/" if region
       
     ec2request = ec2.describeInstances(Filters: [filter])
     ec2request.on 'success', (o) ->
