@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+        <key>Label</key>
+        <string>aws-dns</string>
+        <key>ProgramArguments</key>
+        <array>
+                <string>/usr/local/bin/node</string>
+                <string>/usr/local/bin/aws-dns</string>
+        </array>
+        <key>KeepAlive</key>
+        <true/>
+        <key>RunAtLoad</key>
+        <true/>
+        <!-- <key>StandardOutPath</key>
+        <string>/tmp/aws-dns.log</string>
+        <key>StandardErrorPath</key>
+        <string>/tmp/aws-dns.err.log</string> -->
+        <key>EnvironmentVariables</key>
+        <dict>
+               <key>AWS_ACCESS_KEY_ID</key>
+               <string>YOUR_ACCESS_KEY_ID_HERE</string>
+               <key>AWS_SECRET_ACCESS_KEY</key>
+               <string>YOUR_SECRET_ACCESS_KEY_HERE</string>
+               <key>AWS_REGION</key>
+               <string>eu-west-1</string>
+        </dict>
+</dict>
+</plist>
