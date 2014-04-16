@@ -14,6 +14,11 @@ console.log "Starting server on port #{port} with zone .#{zone}"
 server.on 'request', (req, res) -> 
   question = req.question
   console.log("#{question.name}: DNS Query type: #{question.type}, class: #{question.class}")
+    
+  send_nx = (reason=null) ->
+    console.log "#{question.name}: DNS NX response sent: #{reason}"    
+    res.header.rcode = 3
+    res.send()    
   try 
     if question.type == 1 && question.class == 1
       matches = question.name.match(///([a-zA-Z0-9-\.]+?)\.(?:([a-zA-Z0-9-]+)\.)?#{zone}///)
@@ -40,16 +45,14 @@ server.on 'request', (req, res) ->
         console.log "#{question.name}: DNS response sent"
       
       ec2request.on 'error', (err) ->
-        throw "EC2 error: #{err}"
+        console.log "#{question.name}: EC2 API error: #{err}"
+        send_nx()
         
       ec2request.send()
     else
       throw "Unknown request"
   catch e
-    console.log(e)
-    console.log "#{question.name}: DNS NX response sent"    
-    res.header.rcode = 3
-    res.send()
+    send_nx(e)
     
 server.on 'error', (e) ->
   console.log e
