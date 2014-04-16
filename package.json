@@ -1,7 +1,8 @@
 {
     "author": "Kamil Figiela",
     "bin": {
-        "aws-dns": "./aws-dns.coffee"
+        "aws-dns": "./aws-dns.js",
+        "aws-dns-install": "./install.sh"
     },
     "dependencies": {
         "async": "0.1.22",
@@ -10,7 +11,7 @@
         "log": ">= 1.1.1",
         "nack": "~> 0.15",
         "request": "~> 2.16",
-        "aws-sdk": "*"
+        "aws-sdk": "~> 2.0"
     },
     "description": "Virtual DNS server for Amazon EC2",
     "devDependencies": {
@@ -19,7 +20,7 @@
         "nodeunit": "0.8.0"
     },
     "engines": {
-        "node": ">= 0.8.0"
+        "node": ">= 0.10.0"
     },
     "main": "./lib/index.js",
     "name": "aws-dns",
@@ -28,10 +29,6 @@
         "url": "http://github.com/kfigiela/aws-dns.git"
     },
     "scripts": {
-        "pretest": "cake pretest",
-        "start": "cake start",
-        "stop": "cake stop",
-        "test": "cake test"
     },
-    "version": "0.1.0"
+    "version": "0.2.0"
 }
